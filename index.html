@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+</head>
+<body>
+    <h1>Psychic Game</h1>
+    <div id="game">
+        <p>Try to guess what letter I'm thinking of!</p>
+    </div>
+</body>
+
+<script>
+// This function makes the computer guess a random letter in the alphabet.
+function computerGuess() {
+    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var letter = letters[Math.floor(Math.random() * letters.length)];
+    return letter
+}
+var computer = computerGuess()
+
+//variables to hold score
+var wins = 0;
+var losses = 0;
+
+// This function is run whenever the user presses a key.
+document.onkeyup = function(event) {
+
+// Determines which key was pressed.
+var userGuess = event.key;
+console.log('User guess:' + userGuess)
+console.log('Computer guess:' + computer)
+
+// If guesses match, user wins, if guess do not match, user loses
+if (userGuess===computer){
+    wins++;
+}
+else{
+    losses++;
+}
+
+// Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+var html =
+"<p>Wins: " + wins + "</p>" +
+"<p>Losses: " + losses + "</p>";
+
+//print scores to the html by loading it into the id of game
+document.querySelector("#game").innerHTML = html;
+
+};
+
+
+</script>
+</html>
